@@ -24,7 +24,7 @@
 
 <div class="container">
   <input type="text" id="searchInput" class="form-control mb-3" placeholder="Search products..." />
-  <div class="row" id="product-list"></div>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="product-list"></div>
 </div>
 
 <script>
@@ -33,7 +33,7 @@
   let allProducts = [];
 
   function loadProducts() {
-    fetch("http://localhost:5000/api/products")
+    fetch("/api/products") // ✅ FIXED URL
       .then(res => res.json())
       .then(data => {
         allProducts = data;
@@ -45,7 +45,7 @@
     productList.innerHTML = "";
     products.forEach(product => {
       productList.innerHTML += `
-        <div class="col-md-4 mb-4">
+        <div class="col">
           <div class="card h-100 shadow-sm">
             <img src="${product.imageUrl}" class="card-img-top" alt="${product.name}">
             <div class="card-body">
